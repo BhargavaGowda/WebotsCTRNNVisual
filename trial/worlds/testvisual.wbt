@@ -1,0 +1,110 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+  basicTimeStep 16
+}
+Viewpoint {
+  orientation 0.24662958304340393 0.5239261158648956 -0.8152761948459926 1.1562938569400694
+  position -1.1441279700658262 1.5108479155619492 1.559220658226179
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+WoodenBox {
+  translation 0 0.19 0.07
+  size 0.1 0.1 0.1
+  mass 1
+}
+WoodenBox {
+  translation 0.25 -0.16 0.07
+  name "wooden box(1)"
+  size 0.1 0.1 0.1
+  mass 1
+}
+WoodenBox {
+  translation -0.25 -0.02 0.07
+  name "wooden box(2)"
+  size 0.1 0.1 0.1
+  mass 1
+}
+DEF puck Robot {
+  translation 0 -0.4 0.05
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis -1 0 0
+        anchor -0.057 0 -0.002
+      }
+      device [
+        RotationalMotor {
+          name "leftMotor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.057 0 -0.002
+        rotation 9.8130598440994e-18 1 8.83175385968946e-17 1.570799999999999
+        children [
+          DEF wheel Shape {
+            appearance PaintedWood {
+              colorOverride 0.427451 0.192157 0.192157
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.015
+            }
+          }
+        ]
+        name "wheelLeft"
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis -1 0 0
+        anchor 0.057 0 -0.002
+      }
+      device [
+        RotationalMotor {
+          name "rightMotor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.057 0 -0.002
+        rotation -3.140179150111809e-16 1 0 1.5707999999999984
+        children [
+          DEF wheel Shape {
+            appearance PaintedWood {
+              colorOverride 0.427451 0.192157 0.192157
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.015
+            }
+          }
+        ]
+        name "wheelRight"
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    Shape {
+      appearance GlossyPaint {
+        baseColor 0.305882 0.32549 0.447059
+      }
+      geometry DEF puck_body Cylinder {
+        height 0.03
+        radius 0.05
+      }
+    }
+  ]
+  name "puck cam"
+  boundingObject USE puck_body
+  physics Physics {
+  }
+  controller "my_controller"
+}
