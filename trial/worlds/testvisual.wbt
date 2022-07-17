@@ -3,8 +3,8 @@ WorldInfo {
   basicTimeStep 16
 }
 Viewpoint {
-  orientation 0.24662958304340393 0.5239261158648956 -0.8152761948459926 1.1562938569400694
-  position -1.1441279700658262 1.5108479155619492 1.559220658226179
+  orientation 0.10915383596731007 0.6158297215858822 -0.7802814838922403 0.6373016326293056
+  position -1.3727462892594033 0.4346918436266305 0.705985429411673
 }
 TexturedBackground {
 }
@@ -29,9 +29,14 @@ WoodenBox {
   size 0.1 0.1 0.1
   mass 1
 }
-DEF puck Robot {
+Robot {
   translation 0 -0.4 0.05
   children [
+    Camera {
+      rotation 0 0 1 1.5708
+      width 6
+      height 6
+    }
     HingeJoint {
       jointParameters HingeJointParameters {
         axis -1 0 0
@@ -106,5 +111,5 @@ DEF puck Robot {
   boundingObject USE puck_body
   physics Physics {
   }
-  controller "my_controller"
+  controller "camController"
 }

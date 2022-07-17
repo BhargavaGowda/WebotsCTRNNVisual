@@ -16,7 +16,7 @@ timestep = int(robot.getBasicTimeStep())
 brain = CTRNN(4)
 
 cam = robot.getDevice("camera")
-cam.enable()
+cam.enable(timestep)
 leftMotor = robot.getDevice("leftMotor")
 rightMotor = robot.getDevice("rightMotor")
 leftMotor.setPosition(float("inf"))
