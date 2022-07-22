@@ -11,16 +11,20 @@ robot = Robot()
 
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())
-
-
 brain = CTRNN(4)
 
 cam = robot.getDevice("camera")
 cam.enable(timestep)
+leftTouchSensor = robot.getDevice("leftTouchSensor")
+rightTouchSensor = robot.getDevice("rightTouchSensor")
+leftTouchSensor.enable(timestep)
+rightTouchSensor.enable(timestep)
 leftMotor = robot.getDevice("leftMotor")
 rightMotor = robot.getDevice("rightMotor")
 leftMotor.setPosition(float("inf"))
 rightMotor.setPosition(float("inf"))
+leftMotorLed = robot.getDevice("leftMotorIndicator")
+rightMotorLed = robot.getDevice("rightMotorIndicator")
 
 # brain.weights = numpy.zeros((brain.size,brain.size))
 # brain.bias = numpy.zeros(brain.size)
@@ -30,25 +34,18 @@ rightMotor.setPosition(float("inf"))
 # brain.weights[2,1] = -4
 # brain.weights[3,0] = -4
 
-print(brain.weights)
 
-mutateTimer=0
 
 while robot.step(timestep) != -1:
 
-    if(mutateTimer > 100000):
-        brain.mutate(0.5)
-        mutateTimer = 0
-        print(brain.weights)
-    else:
-        mutateTimer += timestep
-    sensorInput = numpy.array([0,0,0,0])
+    rightMotorVel = 5
+    leftMotorVel = 5
+   
+    leftMotor.setVelocity(leftMotorVel)
+    rightMotor.setVelocity(rightMotorVel)
 
-    brainOutput = brain.step(sensorInput)
-   
-   
-    leftMotor.setVelocity(5*brainOutput[2])
-    rightMotor.setVelocity(5*brainOutput[3])
+    leftMotorLed.set(int(abs(255*leftMotor.getVelocity()/leftMotor.getMaxVelocity())))
+    rightMotorLed.set(int(abs(255*rightMotor.getVelocity()/rightMotor.getMaxVelocity())))
    #print(brainOutput)
    
 

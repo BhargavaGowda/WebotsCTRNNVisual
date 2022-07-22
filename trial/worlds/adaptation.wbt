@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.1346913992523829 -0.9613607228419817 0.24009120671981665 5.226714804447086
-  position -2.7566868970675245 -1.7126589481500802 4.950561330415634
+  orientation 0.16860595065475473 -0.715498649409611 -0.6779629164613867 5.614145920665114
+  position -11.003083788020755 -9.608705753345651 6.806291638615431
   followType "None"
 }
 Background {
@@ -12,7 +12,6 @@ Background {
   ]
 }
 Solid {
-  translation 0.28223 -8.27681 0
   children [
     Solid {
       translation -2.5 0 0.5
@@ -131,43 +130,7 @@ Solid {
   name "obstacleBox"
   boundingObject USE obstacleBox
   physics Physics {
-    density 0.1
-  }
-}
-Solid {
-  translation -1.53 -4.54 0.5
-  children [
-    Shape {
-      appearance MattePaint {
-        baseColor 1 0 0
-      }
-      geometry DEF obstacleBox Box {
-        size 1 1 1
-      }
-    }
-  ]
-  name "obstacleBox(1)"
-  boundingObject USE obstacleBox
-  physics Physics {
-    density 0.1
-  }
-}
-Solid {
-  translation 1.25 -5.15 0.5
-  children [
-    Shape {
-      appearance MattePaint {
-        baseColor 1 0 0
-      }
-      geometry DEF obstacleBox Box {
-        size 1 1 1
-      }
-    }
-  ]
-  name "obstacleBox(2)"
-  boundingObject USE obstacleBox
-  physics Physics {
-    density 0.1
+    density 0.01
   }
 }
 Robot {
@@ -178,22 +141,33 @@ Robot {
       rotation 0 0 1 1.309
       name "rightTouchSensor"
       lookupTable [
-        0 0 0
-        0.05 1000 0
+        0 1 0
+        0.05 0 0
       ]
     }
     DistanceSensor {
       translation -0.05 0.2 0
       rotation 0 0 1 1.8326
-      name "lefTouchSensor"
+      name "leftTouchSensor"
       lookupTable [
-        0 0 0
-        0.05 1000 0
+        0 1 0
+        0.05 0 0
       ]
     }
     LED {
       translation -0.19 0 0.051
       rotation 1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+          castShadows FALSE
+        }
+      ]
       name "leftMotorIndicator"
       color [
         0 1 0
@@ -203,6 +177,17 @@ Robot {
     LED {
       translation 0.19 0 0.051
       rotation 1 0 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+          castShadows FALSE
+        }
+      ]
       name "rightMotorIndicator"
       color [
         0 1 0
@@ -220,9 +205,8 @@ Robot {
       ]
     }
     Camera {
-      translation 0 0.205 0
+      translation 0 0.187 0
       rotation 0 0 1 1.5708
-      fieldOfView 1
       width 6
       height 6
     }
@@ -234,11 +218,12 @@ Robot {
       device [
         RotationalMotor {
           name "leftMotor"
+          maxTorque 100
         }
       ]
       endPoint Solid {
         translation -0.212 0 -0.005
-        rotation 1.4327067372385162e-15 1 0 1.5707999999999944
+        rotation 1.5700895750559073e-15 1 -1.5700895750559076e-16 1.5707999999999942
         children [
           DEF wheel Shape {
             appearance Rubber {
@@ -264,11 +249,12 @@ Robot {
       device [
         RotationalMotor {
           name "rightMotor"
+          maxTorque 100
         }
       ]
       endPoint Solid {
         translation 0.212 0 -0.005
-        rotation 1.4327067372385162e-15 1 0 1.5707999999999944
+        rotation 1.3345761387975212e-15 1 7.850447875279537e-17 1.5707999999999944
         children [
           DEF wheel Shape {
             appearance Rubber {
