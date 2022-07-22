@@ -1,0 +1,305 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.1346913992523829 -0.9613607228419817 0.24009120671981665 5.226714804447086
+  position -2.7566868970675245 -1.7126589481500802 4.950561330415634
+  followType "None"
+}
+Background {
+  skyColor [
+    0.388235 0.662745 1
+  ]
+}
+Solid {
+  translation 0.28223 -8.27681 0
+  children [
+    Solid {
+      translation -2.5 0 0.5
+      rotation 0 1 0 1.5708
+      children [
+        Shape {
+          appearance DEF walls MattePaint {
+            baseColor 0 0.156863 0.231373
+          }
+          geometry DEF wallPlane Plane {
+            size 1 15
+          }
+        }
+      ]
+      name "Wall"
+      boundingObject USE wallPlane
+    }
+    Solid {
+      rotation 0 1 0 0
+      children [
+        Shape {
+          appearance MattePaint {
+            baseColor 0.0784314 0.0784314 0.0784314
+          }
+          geometry DEF groundPlane Plane {
+            size 5 15
+          }
+        }
+      ]
+      name "Ground"
+      boundingObject USE groundPlane
+    }
+    Solid {
+      translation 2.5 0 0.5
+      rotation 0.70710528118436 3.3905113482557537e-09 -0.707108281185553 3.14159
+      children [
+        Shape {
+          appearance USE walls
+          geometry DEF wallPlane Plane {
+            size 1 15
+          }
+        }
+      ]
+      name "Wall(1)"
+      boundingObject USE wallPlane
+    }
+    Solid {
+      translation 0 7.5 0.5
+      rotation 0.5773489358556708 0.5773509358554485 -0.5773509358554485 2.0944
+      children [
+        Shape {
+          appearance USE walls
+          geometry DEF wallPlane Plane {
+            size 1 5
+          }
+        }
+      ]
+      name "Wall(2)"
+      boundingObject USE wallPlane
+    }
+    Solid {
+      translation 0 -7.5 0.5
+      rotation 0.5773476025217157 -0.5773516025189619 -0.5773516025189619 -2.094395307179586
+      children [
+        Shape {
+          appearance USE walls
+          geometry DEF wallPlane Plane {
+            size 1 5
+          }
+        }
+      ]
+      name "Wall(3)"
+      boundingObject USE wallPlane
+    }
+  ]
+  name "Stadium"
+}
+Solid {
+  translation 1.5 0 0.5
+  children [
+    Shape {
+      appearance USE walls
+      geometry DEF midwall Box {
+        size 2 0.1 1
+      }
+    }
+  ]
+  name "MidWall"
+  boundingObject USE midwall
+}
+Solid {
+  translation -1.5 0 0.5
+  children [
+    Shape {
+      appearance USE walls
+      geometry DEF midwall Box {
+        size 2 0.1 1
+      }
+    }
+  ]
+  name "MidWall(1)"
+  boundingObject USE midwall
+}
+Solid {
+  translation 0 -2.52 0.5
+  children [
+    Shape {
+      appearance MattePaint {
+        baseColor 1 0 0
+      }
+      geometry DEF obstacleBox Box {
+        size 1 1 1
+      }
+    }
+  ]
+  name "obstacleBox"
+  boundingObject USE obstacleBox
+  physics Physics {
+    density 0.1
+  }
+}
+Solid {
+  translation -1.53 -4.54 0.5
+  children [
+    Shape {
+      appearance MattePaint {
+        baseColor 1 0 0
+      }
+      geometry DEF obstacleBox Box {
+        size 1 1 1
+      }
+    }
+  ]
+  name "obstacleBox(1)"
+  boundingObject USE obstacleBox
+  physics Physics {
+    density 0.1
+  }
+}
+Solid {
+  translation 1.25 -5.15 0.5
+  children [
+    Shape {
+      appearance MattePaint {
+        baseColor 1 0 0
+      }
+      geometry DEF obstacleBox Box {
+        size 1 1 1
+      }
+    }
+  ]
+  name "obstacleBox(2)"
+  boundingObject USE obstacleBox
+  physics Physics {
+    density 0.1
+  }
+}
+Robot {
+  translation 0.0764612 -4.17421 0.3
+  children [
+    DistanceSensor {
+      translation 0.05 0.2 0
+      rotation 0 0 1 1.309
+      name "rightTouchSensor"
+      lookupTable [
+        0 0 0
+        0.05 1000 0
+      ]
+    }
+    DistanceSensor {
+      translation -0.05 0.2 0
+      rotation 0 0 1 1.8326
+      name "lefTouchSensor"
+      lookupTable [
+        0 0 0
+        0.05 1000 0
+      ]
+    }
+    LED {
+      translation -0.19 0 0.051
+      rotation 1 0 0 1.5708
+      name "leftMotorIndicator"
+      color [
+        0 1 0
+      ]
+      gradual TRUE
+    }
+    LED {
+      translation 0.19 0 0.051
+      rotation 1 0 0 1.5708
+      name "rightMotorIndicator"
+      color [
+        0 1 0
+      ]
+      gradual TRUE
+    }
+    Transform {
+      translation 0 0.201 0.03
+      children [
+        SpotLight {
+          attenuation 0 0 1
+          beamWidth 0.7
+          direction 0 1 0
+        }
+      ]
+    }
+    Camera {
+      translation 0 0.205 0
+      rotation 0 0 1 1.5708
+      fieldOfView 1
+      width 6
+      height 6
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis -1 0 0
+        anchor -0.212 0 -0.005
+      }
+      device [
+        RotationalMotor {
+          name "leftMotor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.212 0 -0.005
+        rotation 1.4327067372385162e-15 1 0 1.5707999999999944
+        children [
+          DEF wheel Shape {
+            appearance Rubber {
+            }
+            geometry DEF wheelGeom Cylinder {
+              height 0.02
+              radius 0.05
+            }
+          }
+        ]
+        name "wheelLeft"
+        boundingObject USE wheelGeom
+        physics Physics {
+          density 1
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis -1 0 0
+        anchor 0.212 0 -0.005
+      }
+      device [
+        RotationalMotor {
+          name "rightMotor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.212 0 -0.005
+        rotation 1.4327067372385162e-15 1 0 1.5707999999999944
+        children [
+          DEF wheel Shape {
+            appearance Rubber {
+            }
+            geometry DEF wheelGeom Cylinder {
+              height 0.02
+              radius 0.05
+            }
+          }
+        ]
+        name "wheelLeft(1)"
+        boundingObject USE wheelGeom
+        physics Physics {
+          density 1
+        }
+      }
+    }
+    Shape {
+      appearance MattePaint {
+        baseColor 0 0.0470588 0.929412
+      }
+      geometry DEF puck_body Cylinder {
+        height 0.1
+        radius 0.2
+      }
+    }
+  ]
+  name "puck cam"
+  boundingObject USE puck_body
+  physics Physics {
+    density 1
+  }
+  controller "camController"
+}

@@ -1,0 +1,88 @@
+#VRML_OBJ R2022a utf8
+Solid {
+  children [
+    Solid {
+      rotation 0 1 0 0
+      children [
+        Shape {
+          appearance Pavement {
+            type "tiles"
+            textureTransform TextureTransform {
+              scale 2 4
+            }
+          }
+          geometry DEF groundPlane Plane {
+            size 5 15
+          }
+        }
+      ]
+      name "Ground"
+      boundingObject USE groundPlane
+    }
+    Solid {
+      translation -2.5 0 0.5
+      rotation 0 1 0 1.5708
+      children [
+        Shape {
+          appearance MattePaint {
+            baseColor 0 0.156863 0.231373
+          }
+          geometry DEF wallPlane Plane {
+            size 1 15
+          }
+        }
+      ]
+      name "Wall"
+      boundingObject USE wallPlane
+    }
+    Solid {
+      translation 2.5 0 0.5
+      rotation 0.70710528118436 3.3905113482557537e-09 -0.707108281185553 3.14159
+      children [
+        Shape {
+          appearance MattePaint {
+            baseColor 0 0.156863 0.231373
+          }
+          geometry DEF wallPlane Plane {
+            size 1 15
+          }
+        }
+      ]
+      name "Wall(1)"
+      boundingObject USE wallPlane
+    }
+    Solid {
+      translation 0 7.5 0.5
+      rotation 0.5773489358556708 0.5773509358554485 -0.5773509358554485 2.0944
+      children [
+        Shape {
+          appearance MattePaint {
+            baseColor 0 0.156863 0.231373
+          }
+          geometry DEF wallPlane Plane {
+            size 1 5
+          }
+        }
+      ]
+      name "Wall(2)"
+      boundingObject USE wallPlane
+    }
+    Solid {
+      translation 0 -7.5 0.5
+      rotation 0.5773476025217157 -0.5773516025189619 -0.5773516025189619 -2.094395307179586
+      children [
+        Shape {
+          appearance MattePaint {
+            baseColor 0 0.156863 0.231373
+          }
+          geometry DEF wallPlane Plane {
+            size 1 5
+          }
+        }
+      ]
+      name "Wall(3)"
+      boundingObject USE wallPlane
+    }
+  ]
+  name "Stadium"
+}

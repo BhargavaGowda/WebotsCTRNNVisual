@@ -1,37 +1,4 @@
-#VRML_SIM R2022a utf8
-WorldInfo {
-  basicTimeStep 16
-}
-Viewpoint {
-  orientation 0.18376767752747025 0.16756716655805592 -0.9685817907579435 1.6946885832488259
-  position 0.1298619392601656 1.6913268001687944 0.8963507998905538
-  followType "Pan and Tilt Shot"
-}
-TexturedBackground {
-}
-CeilingSpotLight {
-  translation 0 -0.02 1.26
-  spotLightIntensity 2
-}
-RectangleArena {
-}
-WoodenBox {
-  translation 0 0.19 0.07
-  size 0.1 0.1 0.1
-  mass 1
-}
-WoodenBox {
-  translation -0.02 0.04 0.07
-  name "wooden box(1)"
-  size 0.1 0.1 0.1
-  mass 1
-}
-WoodenBox {
-  translation -0.25 -0.02 0.07
-  name "wooden box(2)"
-  size 0.1 0.1 0.1
-  mass 1
-}
+#VRML_OBJ R2022a utf8
 Robot {
   translation 0 -0.4 0.05
   children [

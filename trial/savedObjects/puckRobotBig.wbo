@@ -1,0 +1,133 @@
+#VRML_OBJ R2022a utf8
+Robot {
+  translation 0.0764612 -4.17421 0.3
+  children [
+    DistanceSensor {
+      translation 0.05 0.2 0
+      rotation 0 0 1 1.309
+      name "rightTouchSensor"
+      lookupTable [
+        0 0 0
+        0.05 1000 0
+      ]
+    }
+    DistanceSensor {
+      translation -0.05 0.2 0
+      rotation 0 0 1 1.8326
+      name "lefTouchSensor"
+      lookupTable [
+        0 0 0
+        0.05 1000 0
+      ]
+    }
+    LED {
+      translation -0.19 0 0.051
+      rotation 1 0 0 1.5708
+      name "leftMotorIndicator"
+      color [
+        0 1 0
+      ]
+      gradual TRUE
+    }
+    LED {
+      translation 0.19 0 0.051
+      rotation 1 0 0 1.5708
+      name "rightMotorIndicator"
+      color [
+        0 1 0
+      ]
+      gradual TRUE
+    }
+    Transform {
+      translation 0 0.201 0.03
+      children [
+        SpotLight {
+          attenuation 0 0 1
+          beamWidth 0.7
+          direction 0 1 0
+        }
+      ]
+    }
+    Camera {
+      translation 0 0.205 0
+      rotation 0 0 1 1.5708
+      width 6
+      height 6
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis -1 0 0
+        anchor -0.212 0 -0.005
+      }
+      device [
+        RotationalMotor {
+          name "leftMotor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.212 0 -0.005
+        rotation 1.4327067372385162e-15 1 0 1.5707999999999944
+        children [
+          DEF wheel Shape {
+            appearance Rubber {
+            }
+            geometry DEF wheelGeom Cylinder {
+              height 0.02
+              radius 0.05
+            }
+          }
+        ]
+        name "wheelLeft"
+        boundingObject USE wheelGeom
+        physics Physics {
+          density 1
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis -1 0 0
+        anchor 0.212 0 -0.005
+      }
+      device [
+        RotationalMotor {
+          name "rightMotor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.212 0 -0.005
+        rotation 1.4327067372385162e-15 1 0 1.5707999999999944
+        children [
+          DEF wheel Shape {
+            appearance Rubber {
+            }
+            geometry DEF wheelGeom Cylinder {
+              height 0.02
+              radius 0.05
+            }
+          }
+        ]
+        name "wheelLeft(1)"
+        boundingObject USE wheelGeom
+        physics Physics {
+          density 1
+        }
+      }
+    }
+    Shape {
+      appearance MattePaint {
+        baseColor 0 0.0470588 0.929412
+      }
+      geometry DEF puck_body Cylinder {
+        height 0.1
+        radius 0.2
+      }
+    }
+  ]
+  name "puck cam"
+  boundingObject USE puck_body
+  physics Physics {
+    density 1
+  }
+  controller "camController"
+}
