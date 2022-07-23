@@ -1,8 +1,11 @@
-"""my_controller controller."""
+"""camera equipped controller."""
 
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
-from turtle import left
+import sys
+import os 
+dir_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+sys.path.append(dir_path + "\\lib")
 from controller import Robot
 from PyCTRNN import CTRNN
 import numpy
@@ -29,10 +32,7 @@ rightMotorLed = robot.getDevice("rightMotorIndicator")
 # brain.weights = numpy.zeros((brain.size,brain.size))
 # brain.bias = numpy.zeros(brain.size)
 
-# brain.weights[2,0] = 4
-# brain.weights[3,1] = 4
-# brain.weights[2,1] = -4
-# brain.weights[3,0] = -4
+
 
 
 
