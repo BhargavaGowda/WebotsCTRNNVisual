@@ -27,8 +27,7 @@ nr1 = robot.getDevice("neuron 1")
 nr2 = robot.getDevice("neuron 2")
 nr3 = robot.getDevice("neuron 3")
 nr4 = robot.getDevice("neuron 4")
-out1 = robot.getDevice("output 1")
-out2 = robot.getDevice("output 2")
+
 headMotor = robot.getDevice("headMotor")
 headMotor.setPosition(float(inf))
 
