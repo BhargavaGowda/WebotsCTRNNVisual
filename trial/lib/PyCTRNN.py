@@ -1,21 +1,25 @@
+from audioop import bias
 import numpy
 
 class CTRNN:
 
 
-    def __init__(self, size):
+    def __init__(self, size,weightRange=4,biasRange=2):
         self.size = size
         self.potentials = numpy.zeros(size)
         self.weights = (numpy.random.rand(size,size)-0.5)*0.01
         self.bias = (numpy.random.rand(size)-0.5)*0.01
         self.timescale = numpy.full(size,0.5)
+        self.weightRange = weightRange
+        self.biasRange = biasRange
         self.savedWeights = numpy.zeros((size,size))
         self.savedBias = numpy.zeros(size)
+        self.savedTimescale = numpy.full(size,0.5)
         numpy.copyto(self.savedWeights,self.weights)
         numpy.copyto(self.savedBias,self.bias)
-        self.weights += (numpy.random.rand(size,size)-0.5)*0.001
-        self.bias += (numpy.random.rand(size)-0.5)*0.001
-        self.radiation = 1
+        self.weights += ((numpy.random.rand(size)-0.5)*0.01).clip(-1*weightRange,weightRange)
+        self.bias += ((numpy.random.rand(size)-0.5)*0.01).clip(-1*biasRange,biasRange)
+        self.timescale +=((numpy.random.rand(size)-0.5)*0.01).clip(0,1)
         
 
 
@@ -36,24 +40,22 @@ class CTRNN:
         return self.potentials
 
     def sigmoid(self,inputVector):
-        return (1/(1+numpy.exp(-inputVector)))
+        return (1/(1+numpy.exp(-inputVector.clip(min=100))))
 
 
-    def adapt(self,improvement,improvementThreshold=0,mutationSize=0.001,radiationStrength=1.5):
+    def adapt(self,improvement,improvementThreshold=0.001,mutationSize=0.001):
         if(improvement>improvementThreshold):
-            # self.radiation = 1
             numpy.copyto(self.savedWeights,self.weights)
             numpy.copyto(self.savedBias,self.bias)
-            self.weights += (numpy.random.rand(self.size,self.size)-0.5)*mutationSize
-            self.bias += (numpy.random.rand(self.size)-0.5)*mutationSize
+            numpy.copyto(self.savedTimescale,self.timescale)
+            self.weights += ((numpy.random.rand(self.size,self.size)-0.5)*mutationSize).clip(-1*self.weightRange,self.weightRange)
+            self.bias += ((numpy.random.rand(self.size)-0.5)*mutationSize).clip(-1*self.biasRange,self.biasRange)
+            self.timescale += ((numpy.random.rand(self.size)-0.5)*mutationSize).clip(0,1)
         else:
-            self.weights = self.savedWeights + (numpy.random.rand(self.size,self.size)-0.5)*mutationSize#*self.radiation
-            self.bias = self.savedBias + (numpy.random.rand(self.size)-0.5)*mutationSize#*self.radiation
-            # self.radiation*=radiationStrength
-            # self.radiation = min(self.radiation,1000)
-        print("--")      
-        print(improvement)
-        # print(self.radiation)
+            self.weights = self.savedWeights + ((numpy.random.rand(self.size,self.size)-0.5)*mutationSize).clip(-1*self.weightRange,self.weightRange)
+            self.bias = self.savedBias + ((numpy.random.rand(self.size)-0.5)*mutationSize).clip(-1*self.biasRange,self.biasRange)
+            self.timescale = self.savedTimescale + ((numpy.random.rand(self.size)-0.5)*mutationSize).clip(0,1)
+
 
 
 

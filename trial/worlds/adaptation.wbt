@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.0994843470038018 0.9863734836433106 0.13103516881580668 1.3119896263956075
-  position -6.9062903952286625 -4.407368530741253 33.05738801729548
+  orientation 0.14509988491951925 -0.9412954547263055 -0.30480959681076353 5.4592569131998845
+  position -21.47608591724632 -8.996989322559116 23.04687784172102
   followType "None"
 }
 Background {
@@ -90,32 +90,6 @@ Solid {
   name "Stadium"
 }
 Solid {
-  translation 1.5 0 0.5
-  children [
-    Shape {
-      appearance USE walls
-      geometry DEF midwall Box {
-        size 2 0.1 1
-      }
-    }
-  ]
-  name "MidWall"
-  boundingObject USE midwall
-}
-Solid {
-  translation -1.5 0 0.5
-  children [
-    Shape {
-      appearance USE walls
-      geometry DEF midwall Box {
-        size 2 0.1 1
-      }
-    }
-  ]
-  name "MidWall(1)"
-  boundingObject USE midwall
-}
-Solid {
   translation 0 -2.52 0.5
   children [
     Shape {
@@ -133,8 +107,62 @@ Solid {
     density 0.01
   }
 }
+Solid {
+  translation -0.29 2.99 0.5
+  children [
+    Shape {
+      appearance MattePaint {
+        baseColor 1 0 0
+      }
+      geometry DEF obstacleBox Box {
+        size 1 1 1
+      }
+    }
+  ]
+  name "obstacleBox(1)"
+  boundingObject USE obstacleBox
+  physics Physics {
+    density 0.01
+  }
+}
+Solid {
+  translation 0.99 0.14 0.5
+  children [
+    Shape {
+      appearance MattePaint {
+        baseColor 1 0 0
+      }
+      geometry DEF obstacleBox Box {
+        size 1 1 1
+      }
+    }
+  ]
+  name "obstacleBox(2)"
+  boundingObject USE obstacleBox
+  physics Physics {
+    density 0.01
+  }
+}
+Solid {
+  translation -1.76 0.19 0.5
+  children [
+    Shape {
+      appearance MattePaint {
+        baseColor 1 0 0
+      }
+      geometry DEF obstacleBox Box {
+        size 1 1 1
+      }
+    }
+  ]
+  name "obstacleBox(3)"
+  boundingObject USE obstacleBox
+  physics Physics {
+    density 0.01
+  }
+}
 Robot {
-  translation 0 -7 0.1
+  translation 0 -6.06 0.1
   children [
     DistanceSensor {
       translation 0.05 0.2 0
@@ -142,7 +170,7 @@ Robot {
       name "rightTouchSensor"
       lookupTable [
         0 1 0
-        4 0 0
+        0.5 0 0
       ]
     }
     DistanceSensor {
@@ -151,7 +179,16 @@ Robot {
       name "leftTouchSensor"
       lookupTable [
         0 1 0
-        4 0 0
+        0.5 0 0
+      ]
+    }
+    DistanceSensor {
+      translation 0 -0.2 0
+      rotation -0.577349935856137 0.577349935856137 0.5773509358560258 -2.094395307179586
+      name "backTouchSensor"
+      lookupTable [
+        0 1 0
+        0.5 0 0
       ]
     }
     LED {
@@ -187,16 +224,6 @@ Robot {
       name "rightMotorIndicator"
       color []
       gradual TRUE
-    }
-    Transform {
-      translation 0 0.201 0.03
-      children [
-        SpotLight {
-          attenuation 0 0 1
-          beamWidth 0.7
-          direction 0 1 0
-        }
-      ]
     }
     HingeJoint {
       jointParameters HingeJointParameters {
@@ -279,7 +306,7 @@ Robot {
   supervisor TRUE
 }
 Robot {
-  translation 0.94 -7 0.1
+  translation -1.44 -6.06 0.13
   children [
     DistanceSensor {
       translation 0.05 0.2 0
@@ -287,7 +314,7 @@ Robot {
       name "rightTouchSensor"
       lookupTable [
         0 1 0
-        4 0 0
+        0.5 0 0
       ]
     }
     DistanceSensor {
@@ -296,7 +323,16 @@ Robot {
       name "leftTouchSensor"
       lookupTable [
         0 1 0
-        4 0 0
+        0.5 0 0
+      ]
+    }
+    DistanceSensor {
+      translation 0 -0.2 0
+      rotation -0.577349935856137 0.577349935856137 0.5773509358560258 -2.094395307179586
+      name "backTouchSensor"
+      lookupTable [
+        0 1 0
+        0.5 0 0
       ]
     }
     LED {
@@ -332,16 +368,6 @@ Robot {
       name "rightMotorIndicator"
       color []
       gradual TRUE
-    }
-    Transform {
-      translation 0 0.201 0.03
-      children [
-        SpotLight {
-          attenuation 0 0 1
-          beamWidth 0.7
-          direction 0 1 0
-        }
-      ]
     }
     HingeJoint {
       jointParameters HingeJointParameters {
@@ -424,7 +450,7 @@ Robot {
   supervisor TRUE
 }
 Robot {
-  translation -1.33 -7 0.1
+  translation 1.08 -6.06 0.16
   children [
     DistanceSensor {
       translation 0.05 0.2 0
@@ -432,7 +458,7 @@ Robot {
       name "rightTouchSensor"
       lookupTable [
         0 1 0
-        4 0 0
+        0.5 0 0
       ]
     }
     DistanceSensor {
@@ -441,7 +467,16 @@ Robot {
       name "leftTouchSensor"
       lookupTable [
         0 1 0
-        4 0 0
+        0.5 0 0
+      ]
+    }
+    DistanceSensor {
+      translation 0 -0.2 0
+      rotation -0.577349935856137 0.577349935856137 0.5773509358560258 -2.094395307179586
+      name "backTouchSensor"
+      lookupTable [
+        0 1 0
+        0.5 0 0
       ]
     }
     LED {
@@ -477,16 +512,6 @@ Robot {
       name "rightMotorIndicator"
       color []
       gradual TRUE
-    }
-    Transform {
-      translation 0 0.201 0.03
-      children [
-        SpotLight {
-          attenuation 0 0 1
-          beamWidth 0.7
-          direction 0 1 0
-        }
-      ]
     }
     HingeJoint {
       jointParameters HingeJointParameters {
@@ -568,6 +593,22 @@ Robot {
   controller "simpleLearningController"
   supervisor TRUE
 }
-DEF goal FifaSoccerBall {
-  translation 0 5.38 0.27
+Ball {
+  translation -0.67 -0.94 1.09
+  radius 0.5
+}
+Ball {
+  translation 0 0.81 1.09
+  name "ball(1)"
+  radius 0.5
+}
+Ball {
+  translation 0 -4.5 1.09
+  name "ball(2)"
+  radius 0.5
+}
+Ball {
+  translation 0 5.33 1.09
+  name "ball(3)"
+  radius 0.5
 }

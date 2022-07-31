@@ -4,7 +4,7 @@
 from cmath import inf
 from time import time
 
-from requests import head
+
 from controller import Robot
 import sys
 import os 
@@ -31,7 +31,7 @@ nr4 = robot.getDevice("neuron 4")
 headMotor = robot.getDevice("headMotor")
 headMotor.setPosition(float(inf))
 
-brain = CTRNN(4,1,1)
+brain = CTRNN(4)
 
 brain.weights = np.array([[0.09676043,  0.10304022,  0.28637696, -0.30732528],[-0.32507208,  0.16624745, -0.02710929, -0.16294889],[-0.28085107, -0.07937742,  0.07761356,  0.48819756],[ 0.11459461, -0.41337563, -0.06034716,  0.27877888]])
 brain.bias = np.array([-0.18720054, -0.30152419,  0.38290068, -0.07629804])

@@ -4,7 +4,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
-  position 0 7.213495609707352e-17 2.5989356911933394
+  position -3.0409354443555055e-06 -3.0409440433415704e-06 1.523499799822048
 }
 Background {
   skyColor [
@@ -159,21 +159,6 @@ Robot {
   controller "visualTestController"
 }
 Khepera1 {
-  translation 0.27 -0.21 0.03
-  rotation 0 0 1 1.5708
-  name "Khepera(1)"
-  controller "khepera_bus"
-}
-Khepera1 {
-  translation -0.2 0.11 0.03
-  rotation 0 0 1 2.8798
-  name "Khepera(2)"
-  controller "khepera_bus"
-}
-Khepera1 {
-  translation -0.244236 -0.389686 0.05
-  rotation 0 0 1 2.8798
-  name "Khepera(3)"
   controller "khepera_bus"
 }
 Solid {
